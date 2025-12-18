@@ -1,0 +1,23 @@
+name: Daily Telegram Message
+
+on:
+  schedule:
+    - cron: "10 8 * * *"   # 10:10 за Києвом (UTC+2)
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - run: pip install requests
+
+      - run: python send_message.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
