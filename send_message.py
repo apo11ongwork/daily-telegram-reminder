@@ -18,7 +18,7 @@ MESSAGES = {
 day = datetime.datetime.utcnow().weekday()
 task = MESSAGES[day]
 
-text = f"Нагадування по прибиранню:\n\n{task}"
+text = f"Нагадування по прибиранню на сьогодні:\n\n{task}"
 
 url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 requests.post(url, data={
